@@ -1,4 +1,4 @@
-# Venmom 0.01 by Larry Gadea <trivex@gmail.com>.
+# Venmom 0.02 by Larry Gadea <trivex@gmail.com>.
 
 USERNAME = "" #can also be your phone number
 PASSWORD = ""
@@ -64,6 +64,11 @@ csrf = re.search("name='csrfmiddlewaretoken' value='(.*?)'", res).group(1)
 
 #########################################
 
+# the implementation of venmo's auditing is questionable at best. until they fix it,
+# the time/ip is passed in from the clientside.
+req = urllib2.Request("http://whatismyip.org")
+ip_address = urllib2.urlopen(req).read()
+
 req = urllib2.Request("https://venmo.com/account/settings/confirm-withdrawal", 
     "csrfmiddlewaretoken=%s&amount=%s&ip_address=%s&stage=pre-confirm" % (csrf, balance, ip_address),
     {
@@ -76,11 +81,6 @@ res = urllib2.urlopen(req).read()
 csrf = re.search("name='csrfmiddlewaretoken' value='(.*?)'", res).group(1)
 
 #########################################
-
-# the implementation of venmo's auditing is questionable at best. until they fix it,
-# the time/ip is passed in from the clientside.
-req = urllib2.Request("http://whatismyip.org")
-ip_address = urllib2.urlopen(req).read()
 
 est_time = (datetime.now() + timedelta(hours=3))
 timestamp = est_time.strftime("%Y-%m-%d+%H%%3A%M%%3A%S.") + str(est_time.microsecond)
