@@ -1,4 +1,4 @@
-Venmom 0.01 by Larry Gadea <trivex@gmail.com>.
+Venmom 0.02 by Larry Gadea <trivex@gmail.com>.
 
 This script will transfer your Venmo balance to your real bank account. It should be 
 safe to put this on a nightly cron.
@@ -24,6 +24,11 @@ QUICK START
 3.  After you're satisfied, add it to your crontab
 4.  Have a lovely day
 
+CHANGELOG
+---------
+
+- 0.01 - 2010-06-07 - Initial version
+- 0.02 - 2010-07-23 - Fixed an ip detection bug. Confirmed working on latest venmo UI.
 
 LEGAL
 -----
