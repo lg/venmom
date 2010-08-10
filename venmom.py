@@ -1,4 +1,4 @@
-# Venmom 0.02 by Larry Gadea <trivex@gmail.com>.
+# Venmom 0.03 by Larry Gadea <trivex@gmail.com>.
 
 USERNAME = "" #can also be your phone number
 PASSWORD = ""
@@ -51,7 +51,7 @@ req = urllib2.Request("https://venmo.com/account/settings/withdraw-money", heade
 })
 res = urllib2.urlopen(req).read()
 
-balance = float(re.search("\<td\>\$(.*?)\<\/td\>", res).group(1))
+balance = float(re.search("class=\"large bold\"\>\$(.*?)\<\/span\>", res).group(1))
 balance = min(balance, MAXIMUM)
 
 if balance < MINIMUM:

@@ -1,4 +1,4 @@
-Venmom 0.02 by Larry Gadea <trivex@gmail.com>.
+Venmom 0.03 by Larry Gadea <trivex@gmail.com>.
 
 This script will transfer your Venmo balance to your real bank account. It should be 
 safe to put this on a nightly cron.
@@ -29,6 +29,7 @@ CHANGELOG
 
 - 0.01 - 2010-06-07 - Initial version
 - 0.02 - 2010-07-23 - Fixed an ip detection bug. Confirmed working on latest venmo UI.
+- 0.03 - 2010-08-10 - Fixed balance parsing caused by Venmo update.
 
 LEGAL
 -----
