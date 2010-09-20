@@ -1,16 +1,18 @@
-# Venmom 0.03 by Larry Gadea <trivex@gmail.com>.
+# Venmom 0.04 by Larry Gadea <trivex@gmail.com>.
 
 USERNAME = "" #can also be your phone number
 PASSWORD = ""
 
 MINIMUM = 20.00 #can be anything though venmo will ask questions if < $1.00
 MAXIMUM = 500.00 #currently venmo enforces a maximum of $500.00/day
+CONFIRM = True #false to not ask for confirmation before doign the transaction
 
 #########################################
 
 import urllib2
 import re
 import sys
+import getpass
 from urllib2 import HTTPRedirectHandler, build_opener
 from datetime import timedelta, datetime
 
@@ -23,9 +25,10 @@ class SwipeCookieHandler(HTTPRedirectHandler):
         result.status = code
         return result
 
-if USERNAME == "" or PASSWORD == "":
-    print "You havent edited the script to specify your username and password"
-    sys.exit()
+if USERNAME == "":
+    USERNAME = raw_input('Venmo Username: ').strip()
+if PASSWORD == "":
+    PASSWORD = getpass.getpass('Venmo Password: ').strip()
 
 req = urllib2.Request("https://venmo.com")
 res = urllib2.urlopen(req).read()
@@ -59,6 +62,9 @@ if balance < MINIMUM:
     sys.exit()
 
 balance = "%.2f" % balance
+
+if CONFIRM == True:
+    raw_input("Press enter to transfer $%s" % balance)
 
 csrf = re.search("name='csrfmiddlewaretoken' value='(.*?)'", res).group(1)
 
