@@ -1,4 +1,4 @@
-# Venmom 0.04 by Larry Gadea <trivex@gmail.com>.
+# Venmom by Larry Gadea <trivex@gmail.com>.
 
 USERNAME = "" #can also be your phone number
 PASSWORD = ""
@@ -100,7 +100,7 @@ req = urllib2.Request("https://venmo.com/account/settings/confirm-withdrawal",
 )
 res = urllib2.urlopen(req).read()
 
-if "Details of your confirmed withdrawal request" not in res:
+if "Successfully requested direct deposit." not in res:
     print "Failed to do the transfer"
 else:
     print "Success -- Transferred $%s!" % balance
